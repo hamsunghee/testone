@@ -1,0 +1,854 @@
+@import url(common.css);
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@keyframes front{
+  100% {
+    transform: rotate(360deg);
+}
+}
+@keyframes textLoop {
+  0% {
+    transform: translate3d(0,0,0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+/* @keyframes loading{
+  0%{
+    width: 0;
+    opacity: 0;
+    transform: scale(1);
+  }
+  100%{
+    opacity: 1;
+    transform: scale(2);
+  }
+} */
+
+html{scroll-behavior: smooth;}
+
+body{
+  font-family: 'Montserrat', sans-serif;
+  color: #333;
+}
+
+/* Hamberger menu________- */
+
+input[id="menu"] {
+  display: none;
+}
+input[id="menu"] + label {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 25px;
+  cursor: pointer;
+}
+input[id="menu"] + label span {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 30px;
+  background: #fff;
+  transition: 0.3s;
+  right: 60px;
+
+}
+input[id="menu"] + label span:nth-child(1) {
+  top: 0;
+}
+input[id="menu"] + label span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+input[id="menu"] + label span:nth-child(3) {
+  bottom: 0;
+}
+input[id="menu"]:checked + label {z-index:3;}
+/* 클릭 시 */
+input[id="menu"]:checked + label span:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+input[id="menu"]:checked + label span:nth-child(2) {
+  opacity: 0;
+}
+input[id="menu"]:checked + label span:nth-child(3) {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}
+div[class="sidebar"] {
+  width:250px;
+  height:100%;
+  background: linear-gradient(#09f,#fff);
+  position:fixed;
+  top:0;
+  left:-300px;
+  z-index:2;
+  transition: all 0.35s;
+}
+input[id="menu"]:checked + label + div {left:0;}
+
+.sidebar h2{
+  color: #fff;
+  padding-top: 10px;
+  margin-top: 50px;
+  margin-left: 30px;
+  cursor: pointer;
+  transition: all 0.35s;
+
+}
+.sidebar h2:hover{
+  background: #09f;
+  padding: 5px;
+}
+
+/* Top Button */
+.top{
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+}
+.top a{
+  display: block;
+  width: 80px;
+  height: 80px;
+  background: url(../image/top1.png) no-repeat;
+  transition: 0.35s;
+}
+.top a:hover{background-image: url(../image/토끼.png);}
+
+
+/* Header__________________________________ */
+
+header{
+  position:fixed;
+  z-index:1;
+  width: 100%;
+  height: 80px;
+  background-color: #09f;
+  box-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
+header img{
+/*   border: 1px solid #000; */
+  margin-left: 100px;;
+  margin-bottom: 10px;
+  width: 170px;
+  height: 180px; 
+}
+nav{
+  width: 1200px;
+  height: inherit;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.gnb{display: flex;}
+.gnb li{margin: 0 15px;}
+.gnb li a{
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: capitalize;
+  transition: 0.5s;
+}
+.gnb li a:hover{  
+  color:#000;
+  border-bottom: 3px solid blue;
+}
+.gnb li a:hover:not(.active){
+  color: #f57272;
+}
+.gnb li a.active{ 
+  background-color: rgb(65, 225, 126); 
+  padding: 5px
+}
+
+/* Main____________________________________ */
+
+.search{
+  position: relative;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 55px;
+  border-radius: 20px;
+  transition: 0.35s;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  cursor: pointer;
+  overflow: hidden;
+}
+.search:hover{
+  width: 200px;
+}
+.search:hover i{
+  position: absolute;
+  width: 200px;
+  height: 20px;
+  top: 15px;
+  left: 75px;
+  color: #fff;
+}
+
+.search input{
+  display: none;
+  border: none; 
+  outline: none;
+}
+
+  .search:hover input{ color: #fff;
+  position: absolute;
+  display: block;
+  background: transparent;
+  color: #fff;
+  height: 32px;
+  width: 230px;
+  top:8px;
+  left:20px;
+  font-size: large;
+}
+.search i{
+  color: #fff;
+  font-size: 22px;
+}
+
+
+main{
+/*   padding-top: 75px; */
+  width: 100%;
+  height:700px;
+  background: url(../image/main.jpg) no-repeat center center fixed;
+  background-size: cover;
+  transition: 0.5s;
+}
+main:hover{
+  background-image: url(../image/main4.jpg);
+}
+.caption{
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.caption h1{
+  font-family:"Century Gothic", arial;
+  color: #fff;
+  font-size: 70px;
+  font-weight: 100;
+  text-transform: capitalize;
+}
+.caption strong{
+  color: #ddd;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: -1px;
+}
+
+
+/* Section__________________________________ */
+
+section{
+  width: 100%;
+  text-align: center;
+}
+
+section h2{
+  font-family: 'Raleway', sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+section h3{
+  font-weight: 400;
+  font-size: 18px;
+  margin: 10px 0;
+  color: #777;
+}
+section>div{margin-top: 70px;}
+
+
+/*ABOUT___________________________*/
+
+#ABOUT h2{
+  text-transform: capitalize;
+}
+.list{
+  background: url(../image/main5.jpg) no-repeat center center;
+  width: 100%;
+  height: 800px;
+  margin-top: 50px;
+  font-size: 30px;
+  padding-top: 300px;
+}
+
+.list h4{
+}
+.list h5{
+
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 2px;
+  color:#000;
+  display : flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+}
+
+  /*  중앙정렬확인 */
+
+.list h5:hover{
+  color: #fff;
+  padding: 40px;
+}
+
+.ab_num{
+  width: 100%;
+  height: 250px;
+  background-color: #eee;
+  margin-top: 30px;
+}
+.ab_num ul{
+  width: 1200px;
+  margin: auto;
+  height: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ab_num ul li span:nth-child(1){  /* icon font */
+  font-size: 60px;
+  color: #555;
+  vertical-align:top;
+  transform: translateY(-5px);
+}
+.ab_num ul li span:nth-child(2){
+  font-size: 42px;
+  color: #555;
+  font-weight: 500;
+  padding-left: 15px;
+}
+.ab_num ul li span:nth-child(3){
+  display: block;
+  font-size: 20px;
+  color: #666;
+  padding-left: 60px;
+}
+
+#portfolio{
+  width: 100%;
+  height: 1050px;
+  /* background-color: #09f; */
+  padding-top: 70px;
+}
+/* 개인프로필 */
+
+.content3{
+  height: 400px;
+  display: flex;
+}
+.content3 div{
+  height: inherit;
+  font-size: 26px;
+  font-weight: bold;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail{
+  height: 800px;
+  display: flex;
+}
+
+.detail li{
+  /* border-right: 5px solid rgba(0, 217, 255, 0.712) */
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  transition: 0.5s;
+}
+.detail li:nth-child(1){
+  background: url(../image/민지.png) no-repeat center center;
+  background-color: #09f;
+}
+.detail li:nth-child(2){
+  background: url(../image/하니.png) no-repeat center center;
+  background-color: #09f;
+}
+.detail li:nth-child(3){
+  background: url(../image/다니엘.png) no-repeat center center;
+  background-color: #09f;
+}
+.detail li:nth-child(4){
+
+  background: url(../image/해린.png) no-repeat center center;
+  background-color: #09f;
+  
+}
+.detail li:nth-child(5){
+  background: url(../image/혜인.png) no-repeat center center;
+  background-color: #09f;
+}
+.detail li:hover{
+  flex: 3;
+  /* filter: blur(5px);
+  -webkit-filter: blur(2px);
+  filter: grayscale(1);  */
+}
+.content3{
+  /* border: 1px solid #000; */
+  position: absolute;
+  bottom: -400px;
+  background-color:#09f;
+  color: #fff;
+  width: 600px;
+  height: 120px;
+  padding-top: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: 0.5s;
+  left: 30px;
+  margin-left: 80px;
+
+}
+.content3 h2{
+  margin-left: 100px;
+  line-height: 30px;
+}
+.content3 p{ 
+  margin-left: 100px;
+  position: absolute;
+  /* border: 1px solid #000; */
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+.detail li:hover .content3{
+  bottom: 0;
+  transition-delay: 0.3s; /* 지연시간 */
+} 
+
+/* 갤러리 tabmenu -------------- */
+.tabimg a:hover{
+  animation: loading 1s linear;
+}
+.tabmenu{
+  /* border: 1px solid red; */
+  width: 1200px;
+  height: 100px;
+  margin: auto;
+}
+.tabmenu ul{
+  height: inherit;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.tabmenu ul li:first-child{
+  border-bottom: 3px solid rgb(0, 255, 106);
+  padding: 0 30px;
+}
+.tabmenu ul li a{
+  font-weight: bold;
+  font-size: 20px;
+  color: #000;
+  text-transform: capitalize;
+  transition: 0.35s;
+}
+
+.tabmenu ul li a:hover{
+  background: #09f;
+}
+.tabmenu ul li:first-child:hover{
+  background: #09f;
+}
+.tabimg{
+  /* border: 1px solid red; */
+  width: 1200px;
+  margin: auto;
+}
+.tabimg ul{overflow: hidden;} /* float문제 해결 */
+.tabimg ul li{
+  float: left;
+  margin-right: 30px;
+  margin-bottom: 20px;  
+  transition: 0.5s;
+}
+.tabimg ul li:last-child,
+.tabimg ul li:nth-child(4){
+  margin-right: 0;
+}
+
+.tabimg ul li:hover{
+  transform: scale(1.1);
+}
+
+
+/* MOVIE ___________________________________ */
+
+#MOVIE h2{
+  margin-top: 50px;
+  padding: 70px;
+}
+
+
+/*///////// Our blog ALBUM______________________*/
+#ALBUM{
+  height: 1200px;
+  padding: 60px;
+}
+.blog_img{
+  width: 1200px;
+  height: 500px;
+  margin: 60px auto 0;
+}
+.blog_img ul{
+  width: inherit;
+  display: flex;
+  justify-content: center;
+}
+.btitle{
+  width: 80%;
+  margin: auto;
+}
+.btitle h5{
+  color: royalblue;
+  font-size: 20px;
+  font-weight: bold;
+
+
+}
+.btitle p{
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+
+}
+.btitle a{  
+  margin-left: 500px;
+  width: 150px;
+  height: 30px;
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  border-radius: 20px;
+  background: linear-gradient(#fff,rgb(65, 225, 126));
+  border: 1px solid lime;
+  font-weight: bold;
+}
+
+.btitle a:hover{
+  background: linear-gradient(#fff,rgb(37, 87, 253));
+  border: 1px solid blue;
+} 
+
+/*///////// Our shop*/
+/*///////// Our service*/
+#SHOP h2{
+  margin-top: 150px;
+}
+.skill{
+
+}
+.service_img{
+  width: 1200px;
+  margin: 80px auto 0;
+}
+.service_img ul{
+  display: flex;
+  justify-content: space-between;
+
+}
+.service_img ul li{
+  width: 280px;
+  height: 280px;
+  border: 1px solid #ccc;
+  background: linear-gradient(#fff,#09f);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.service_img ul li:hover{
+  background: rgba(0,0,0,0.15);
+  
+}
+
+.service_img img{
+  height: 350px;
+
+}
+.service_img p{
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+.bar{
+  width: 1200px;
+  margin: 80px auto 0;
+  position: relative;
+}
+.bar ul{
+  display: flex;
+  justify-content: space-between;
+
+}
+.bar ul li{
+  width: 200px;
+  height: 40px;
+  border: 1px solid #ccc;
+  background: linear-gradient(#fff,rgb(0, 255, 85));
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 40px;
+  margin-left: 40px;
+  font-weight: bold;
+}
+.bar ul li:hover{
+  background: linear-gradient(#fff,rgb(116, 255, 74));
+  color: royalblue;
+}
+
+
+/* cd 회전 ------------------*/
+.btitle{
+  height: 30px;
+  opacity: 0;
+}
+.ab:hover .btitle{
+  opacity: 1;
+}
+
+.box{
+  position: relative;
+  float: left;
+  width: 250px;
+  height: 500px;
+  margin: 0 30px;
+  transition: 0.5s;
+}
+
+.box2{
+  position: relative;
+  float: left;
+  width: 250px;
+  height: 500px;
+  margin: 0 100px;
+  transition: 0.5s;
+}
+
+.back{
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+}
+.front{
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 50px;
+}
+.box:hover .front{
+  animation: front 0.5s linear infinite;
+  /* transform: rotate(-260deg) translateX(300px); */
+  animation-delay: 0.5s;
+  }
+
+.box:hover .back{
+  transform:  translateX(-300px);
+  filter: grayscale(2);
+}
+
+
+
+
+/*  News-------------- */
+
+#NEWS h2{
+  margin-top: 150px;
+  padding: 50px;
+}
+
+.tab-inner{
+  /* border: 1px solid red; */
+  width: 500px;
+  height: 900px;
+  position: relative;
+}
+input[name=tabmenu]{display: none;}
+
+.content{
+/* display: none;  트렌지션안먹음*/ 
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: 0.5s;
+} 
+
+.btn{
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 10px;
+}
+.btn label{
+  background-color: lightgray;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+
+input[id=tab1]:checked ~ .slide1,
+input[id=tab2]:checked ~ .slide2,
+input[id=tab3]:checked ~ .slide3{
+/*   display: block; */
+  opacity: 1;
+}
+
+input[id=tab1]:checked ~ .btn label[for=tab1],
+input[id=tab2]:checked ~ .btn label[for=tab2],
+input[id=tab3]:checked ~ .btn label[for=tab3]{
+  background-color: crimson;
+}
+
+.tab-inner{
+  /* border: 1px solid red; */
+  width: 100%;
+  height: 900px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+}
+input[name=tabmenu]{display: none;}
+
+.content{
+/* display: none;  트렌지션안먹음*/ 
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: 0.5s;
+
+} 
+
+.btn1{
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 10px;
+  
+
+}
+.btn1 label{
+
+  background-color: lightgray;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+
+input[id=tab1]:checked ~ .slide1,
+input[id=tab2]:checked ~ .slide2,
+input[id=tab3]:checked ~ .slide3{
+/*   display: block; */
+  opacity: 1;
+}
+
+input[id=tab1]:checked ~ .btn1 label[for=tab1],
+input[id=tab2]:checked ~ .btn1 label[for=tab2],
+input[id=tab3]:checked ~ .btn1 label[for=tab3]{
+  background-color: lime;
+}
+
+
+/* shop 호버 버튼 */
+
+.service_img a{
+  position: absolute;
+
+  width: inherit;
+  height: inherit;
+  background-color: rgba(0,0,0,0.7);
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 120px 20px 20px 20px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: 0.5s;
+}
+.service_img a:hover{opacity: 1;}
+
+
+
+/* Footer__________________________________ */
+
+footer{
+
+  width: 100%;
+  height: 120px;
+  text-align: center;
+  color: #666;
+  margin-top: 150px;
+
+}
+
+address{
+  font-style: normal;
+  margin-top: 20px;
+  color: #000;
+}
+address strong{color: #09f;}
+footer a{
+  text-decoration: underline;
+}
+
+
+/*  계속 진행되는 바  */
+
+.flow-text {
+  display: flex;
+    flex: 0 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: 0.3s;
+    font-size: 2.5rem;
+    font-weight:bold;
+    color: #000;
+    border: 2px solid #000;
+    border-left: none;
+    border-right: none;
+    background: #fff;
+}
+.flow-text:hover {
+  color: #09f;
+}
+.flow-text:hover .flow-wrap {
+  animation-play-state: paused;
+  cursor: pointer;
+}
+.flow-wrap {
+  animation: textLoop 5s linear infinite;
+  padding-right: 100px;
+}
+
